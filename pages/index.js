@@ -3,7 +3,7 @@ import MainApp from '../components/MainApp';
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch('http://localhost:3000/api/posts'); // Replace with the correct URL
+    const response = await fetch('http://localhost:3000/api/posts');
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

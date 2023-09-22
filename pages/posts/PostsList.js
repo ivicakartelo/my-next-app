@@ -44,8 +44,19 @@ export const PostsList = () => {
     console.log(error)
     
     useEffect(() => {
-        postStatus === 'idle' && dispatch(fetchPosts())
-    },[postStatus, dispatch])
+        // Initial data fetch when the component mounts
+        if (postStatus === 'idle') {
+          dispatch(fetchPosts());
+        }
+    
+        // Periodic data fetch using setInterval (e.g., every 5 minutes)
+        const intervalId = setInterval(() => {
+          dispatch(fetchPosts());
+        }, 300000); // 5 minutes in milliseconds
+    
+        // Cleanup: Stop the interval when the component unmounts
+        return () => clearInterval(intervalId);
+      }, [postStatus, dispatch]);
 
 let content
     
